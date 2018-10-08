@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    xm:
+    <input type="text" name="user" id="xm"> mm:
+    <input type="password" name="pass" id="mm">
+    <input type="submit" value="注册" id="reg">
+    <input type="submit" value="登陆" id="login">
+    <script type="text/javascript" src="./jquery-3.3.1.js"></script>
+    <script>
+        $('#reg').on('click', function () {
+            var user = $('#xm').val();
+            var pass = $('#mm').val();
+            $.ajax(
+                {
+                    type: 'GET',
+                    url:'/user',
+
+                    data: {
+                        act: "reg",
+                        user: user,
+                        pass: pass
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        console.log('SSS')
+                        if (data.ok) {
+
+                            console.log(data)
+                        } else {
+
+                            console.log(data)
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // console.log(jqXHR)
+                        // // console.log(textStatus);
+                        // console.log(errorThrown);
+                    }
+                });
+
+        }
+        )
+         
+        $('#login').on('click', function () {
+            var user = $('#xm').val();
+            var pass = $('#mm').val();
+            $.ajax(
+                {
+                    type: 'GET',
+                    url: '/user',
+                    data: {
+                        act: 'login',
+                        user: user,
+                        pass: pass
+                    },
+                    success: function (data) {
+                        if (data.ok) {
+                            alert(data.msg);
+                        } else {
+                            alert(data.msg);
+                        }
+                    },
+                    error: function () {
+                        alert('登陆失败111')
+                    }
+                }
+            )
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
